@@ -83,7 +83,7 @@ warehouse-robotics/
 
 ## Контакты
 - Автор: Ярослав Муравьев
-- Email: yaroslav.muravev,work@yandex.ru
+- Email: yaroslav.muravev.work@yandex.ru
 - Telegram: @yarosalv_muravev
 
 ## Лицензия
