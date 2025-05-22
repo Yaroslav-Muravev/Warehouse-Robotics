@@ -1,0 +1,56 @@
+# === ROS 2 build artifacts ===
+/build/*
+/install/*
+/log/*
+
+# In-source build leftovers (some people build in-place)
+CMakeFiles/
+CMakeScripts/
+CTestTestfile.cmake
+Makefile
+cmake_install.cmake
+
+# === Python ===
+# Byte‐compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.env/
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Coverage
+htmlcov/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+
+# === Ignition / Gazebo ===
+# logs, caches
+~/.ros/
+~/.gazebo/
+~/.ignition/
+
+# === Node / Dashboard ===
+dashboard/node_modules/
+dashboard/npm-debug.log*
+dashboard/yarn-error.log*
+
+# === Editor / OS files ===
+
+# IDEs
+.idea/
+
+# Misc
+*.swp
+*~
