@@ -1,0 +1,4 @@
+int8 direction
+---
+nav_msgs/Path updated_path
+

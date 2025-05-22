@@ -1,0 +1,269 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="warehouse_bot">
+    <static>false</static>
+
+    <!-- ====================== -->
+    <!--   Base Link & Body    -->
+    <!-- ====================== -->
+    <link name="base_link">
+      <pose>0 0 0.1 0 0 0</pose>
+
+      <!-- Body collision & visual -->
+      <collision name="body_col">
+        <geometry>
+          <cylinder>
+            <radius>0.18</radius>
+            <length>0.05</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="body_vis">
+        <geometry>
+          <cylinder>
+            <radius>0.18</radius>
+            <length>0.05</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.5 0.5 0.5 1</ambient>
+          <diffuse>0.5 0.5 0.5 1</diffuse>
+        </material>
+      </visual>
+
+      <!-- Inertial -->
+      <inertial>
+        <mass>5.0</mass>
+        <inertia>
+          <ixx>0.05</ixx>
+          <iyy>0.05</iyy>
+          <izz>0.05</izz>
+        </inertia>
+      </inertial>
+
+      <!-- IMU Sensor -->
+      <sensor name="imu_sensor" type="imu">
+        <pose>0 0 0 0 0 0</pose>
+        <imu>
+          <topic>/warehouse_bot/imu/data_raw</topic>
+          <gaussianNoise>0.0001</gaussianNoise>
+        </imu>
+        <plugin name="imu_plugin" filename="libros_gz_imu.so">
+          <ros>
+            <namespace>warehouse_bot</namespace>
+          </ros>
+          <topicName>imu/data_raw</topicName>
+          <frameId>base_link</frameId>
+        </plugin>
+      </sensor>
+
+      <!-- Ultrasonic / IR Rangefinders -->
+      <sensor name="range_front" type="ray">
+        <pose>0.25 0 0.1 0 0 0</pose>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>1</samples>
+              <resolution>1</resolution>
+              <min_angle>0</min_angle>
+              <max_angle>0</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.02</min>
+            <max>3.0</max>
+            <resolution>0.01</resolution>
+          </range>
+        </ray>
+        <plugin name="range_plugin_f" filename="libros_gz_range.so">
+          <ros>
+            <namespace>warehouse_bot</namespace>
+          </ros>
+          <topicName>range/front</topicName>
+          <frameId>base_link</frameId>
+        </plugin>
+      </sensor>
+
+      <sensor name="range_left" type="ray">
+        <pose>0 0.18 0.1 0 0 1.5708</pose>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>1</samples>
+              <resolution>1</resolution>
+              <min_angle>0</min_angle>
+              <max_angle>0</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.02</min>
+            <max>3.0</max>
+            <resolution>0.01</resolution>
+          </range>
+        </ray>
+        <plugin name="range_plugin_l" filename="libros_gz_range.so">
+          <ros>
+            <namespace>warehouse_bot</namespace>
+          </ros>
+          <topicName>range/left</topicName>
+          <frameId>base_link</frameId>
+        </plugin>
+      </sensor>
+
+      <sensor name="range_right" type="ray">
+        <pose>0 -0.18 0.1 0 0 -1.5708</pose>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>1</samples>
+              <resolution>1</resolution>
+              <min_angle>0</min_angle>
+              <max_angle>0</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.02</min>
+            <max>3.0</max>
+            <resolution>0.01</resolution>
+          </range>
+        </ray>
+        <plugin name="range_plugin_r" filename="libros_gz_range.so">
+          <ros>
+            <namespace>warehouse_bot</namespace>
+          </ros>
+          <topicName>range/right</topicName>
+          <frameId>base_link</frameId>
+        </plugin>
+      </sensor>
+
+    </link>
+
+    <!-- ====================== -->
+    <!--    Wheel Assemblies    -->
+    <!-- ====================== -->
+    <link name="wheel_left">
+      <pose>0 0.18 0.05 0 0 0</pose>
+      <collision name="col">
+        <geometry>
+          <cylinder><radius>0.05</radius><length>0.02</length></cylinder>
+        </geometry>
+      </collision>
+      <visual name="vis">
+        <geometry>
+          <cylinder><radius>0.05</radius><length>0.02</length></cylinder>
+        </geometry>
+        <material>
+          <ambient>0.2 0.2 0.2 1</ambient>
+          <diffuse>0.2 0.2 0.2 1</diffuse>
+        </material>
+      </visual>
+      <inertial>
+        <mass>0.3</mass>
+        <inertia>
+          <ixx>0.0005</ixx>
+          <iyy>0.0005</iyy>
+          <izz>0.0005</izz>
+        </inertia>
+      </inertial>
+    </link>
+
+    <link name="wheel_right">
+      <pose>0 -0.18 0.05 0 0 0</pose>
+      <collision name="col">
+        <geometry>
+          <cylinder><radius>0.05</radius><length>0.02</length></cylinder>
+        </geometry>
+      </collision>
+      <visual name="vis">
+        <geometry>
+          <cylinder><radius>0.05</radius><length>0.02</length></cylinder>
+        </geometry>
+        <material>
+          <ambient>0.2 0.2 0.2 1</ambient>
+          <diffuse>0.2 0.2 0.2 1</diffuse>
+        </material>
+      </visual>
+      <inertial>
+        <mass>0.3</mass>
+        <inertia>
+          <ixx>0.0005</ixx>
+          <iyy>0.0005</iyy>
+          <izz>0.0005</izz>
+        </inertia>
+      </inertial>
+    </link>
+
+    <!-- ====================== -->
+    <!--       Wheel Joints     -->
+    <!-- ====================== -->
+    <joint name="joint_left" type="revolute">
+      <parent>base_link</parent>
+      <child>wheel_left</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1000</lower>
+          <upper>1000</upper>
+        </limit>
+      </axis>
+    </joint>
+
+    <joint name="joint_right" type="revolute">
+      <parent>base_link</parent>
+      <child>wheel_right</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1000</lower>
+          <upper>1000</upper>
+        </limit>
+      </axis>
+    </joint>
+
+    <!-- ====================== -->
+    <!--  Differential Drive    -->
+    <!-- ====================== -->
+    <plugin name="diff_drive" filename="libros_gz_diff_drive.so">
+      <ros>
+        <namespace>warehouse_bot</namespace>
+      </ros>
+      <leftJoint>joint_left</leftJoint>
+      <rightJoint>joint_right</rightJoint>
+      <wheelSeparation>0.36</wheelSeparation>
+      <wheelDiameter>0.10</wheelDiameter>
+      <cmdVelTopic>cmd_vel</cmdVelTopic>
+      <frameId>base_link</frameId>
+    </plugin>
+
+    <!-- ====================== -->
+    <!--    Monocular Camera    -->
+    <!-- ====================== -->
+    <link name="camera_link">
+      <pose>0.20 0 0.30 0 0 0</pose>
+      <sensor name="front_camera" type="camera">
+        <camera>
+          <horizontal_fov>1.047</horizontal_fov>
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.1</near>
+            <far>50.0</far>
+          </clip>
+        </camera>
+        <plugin name="camera_ctrl" filename="libros_gz_camera.so">
+          <ros>
+            <namespace>warehouse_bot</namespace>
+          </ros>
+          <imageTopic>image_raw</imageTopic>
+          <cameraInfoTopic>camera_info</cameraInfoTopic>
+          <frameId>camera_link</frameId>
+        </plugin>
+      </sensor>
+    </link>
+
+  </model>
+</sdf>
+

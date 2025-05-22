@@ -1,0 +1,10 @@
+# === ROS 2 build artifacts ===
+robot_system/build/*
+robot_system/install/*
+robot_system/log/*
+
+# === Editor / OS files ===
+
+# IDEs
+.idea/
+
