@@ -1,0 +1,57 @@
+.warehouse-map {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f0f0f0"/><path d="M0,0 L100,0 L100,100 L0,100 Z M10,10 L90,10 L90,90 L10,90 Z" fill="none" stroke="%23ddd" stroke-width="0.5"/><line x1="0" y1="20" x2="100" y2="20" stroke="%23ddd" stroke-width="0.5"/><line x1="0" y1="40" x2="100" y2="40" stroke="%23ddd" stroke-width="0.5"/><line x1="0" y1="60" x2="100" y2="60" stroke="%23ddd" stroke-width="0.5"/><line x1="0" y1="80" x2="100" y2="80" stroke="%23ddd" stroke-width="0.5"/><line x1="20" y1="0" x2="20" y2="100" stroke="%23ddd" stroke-width="0.5"/><line x1="40" y1="0" x2="40" y2="100" stroke="%23ddd" stroke-width="0.5"/><line x1="60" y1="0" x2="60" y2="100" stroke="%23ddd" stroke-width="0.5"/><line x1="80" y1="0" x2="80" y2="100" stroke="%23ddd" stroke-width="0.5"/></svg>');
+    background-size: 100px 100px;
+    position: relative;
+    overflow: hidden;
+}
+
+.robot-marker {
+    position: absolute;
+    transition: all 0.5s ease;
+    filter: drop-shadow(0 0 2px rgba(0,0,0,0.3));
+}
+
+.progress-bar {
+    height: 6px;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+.alert-pulse {
+    animation: pulse 2s infinite;
+}
+
+.shelf-marker {
+    position: absolute;
+    background-color: #4b5563;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.nav-link.active {
+    background-color: #374151;
+}

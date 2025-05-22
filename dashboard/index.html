@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warehouse Robotics Control</title>
+    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
+    <link rel="stylesheet" href="[https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css)">
+    <link rel="stylesheet" href="css/styles.css"> </head>
+<body class="bg-gray-100 font-sans">
+    <div class="flex h-screen overflow-hidden">
+        <aside class="w-64 bg-gray-800 text-white flex flex-col">
+            <div class="p-4 border-b border-gray-700 flex items-center">
+                <i class="fas fa-robot text-blue-400 text-2xl mr-3"></i>
+                <h1 class="text-xl font-bold">Warehouse Control</h1>
+            </div>
+
+            <nav class="flex-1 p-4 space-y-2">
+                <a href="#" class="nav-link flex items-center p-2 rounded hover:bg-gray-700 active" data-page="dashboard">
+                    <i class="fas fa-map-marked-alt mr-3 text-blue-400"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-link flex items-center p-2 rounded hover:bg-gray-700" data-page="tasks">
+                    <i class="fas fa-tasks mr-3 text-green-400"></i>
+                    <span>Task Management</span>
+                </a>
+                <a href="#" class="nav-link flex items-center p-2 rounded hover:bg-gray-700" data-page="analytics">
+                    <i class="fas fa-chart-line mr-3 text-yellow-400"></i>
+                    <span>Performance Analytics</span>
+                </a>
+                <a href="#" class="nav-link flex items-center p-2 rounded hover:bg-gray-700" data-page="settings">
+                    <i class="fas fa-cog mr-3 text-purple-400"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <div class="p-4 border-t border-gray-700">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center mr-3">
+                        <i class="fas fa-user text-white"></i>
+                    </div>
+                    <div>
+                        <div class="font-medium">Admin User</div>
+                        <div class="text-xs text-gray-400">Warehouse Manager</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="flex-1 flex flex-col overflow-hidden">
+            <header class="bg-white border-b border-gray-200 p-4 flex items-center justify-between">
+                <h2 class="text-xl font-semibold text-gray-800" id="pageTitle">Robot Tracking Dashboard</h2>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <i class="fas fa-search absolute left-3 top-2.5 text-gray-400"></i>
+                        <input type="text" placeholder="Search..." class="pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center" id="newTaskBtn">
+                        <i class="fas fa-plus mr-2"></i>
+                        <span>New Task</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="flex-1 overflow-auto p-6">
+                <section class="page active" id="dashboard">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                        <div class="bg-white rounded-xl shadow p-4">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-500">Active Robots</p>
+                                    <h3 class="text-2xl font-bold" id="activeRobotsCount">12</h3>
+                                </div>
+                                <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
+                                    <i class="fas fa-robot text-blue-600 text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-xl shadow p-4">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-500">Tasks in Progress</p>
+                                    <h3 class="text-2xl font-bold" id="tasksInProgressCount">8</h3>
+                                </div>
+                                <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
+                                    <i class="fas fa-tasks text-green-600 text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-xl shadow p-4">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-500">Completed Today</p>
+                                    <h3 class="text-2xl font-bold" id="completedTodayCount">24</h3>
+                                </div>
+                                <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center">
+                                    <i class="fas fa-check-circle text-purple-600 text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-xl shadow p-4">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-500">Issues Reported</p>
+                                    <h3 class="text-2xl font-bold" id="issuesReportedCount">2</h3>
+                                </div>
+                                <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center">
+                                    <i class="fas fa-exclamation-triangle text-red-600 text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="lg:col-span-2 bg-white rounded-xl shadow overflow-hidden">
+                            <div class="p-4 border-b border-gray-200 flex justify-between items-center">
+                                <h3 class="font-semibold text-gray-800">Warehouse Floor Plan</h3>
+                                <div class="flex space-x-2">
+                                    <button class="px-3 py-1 bg-gray-100 rounded-lg text-sm">Zone A</button>
+                                    <button class="px-3 py-1 bg-gray-100 rounded-lg text-sm">Zone B</button>
+                                    <button class="px-3 py-1 bg-blue-100 text-blue-600 rounded-lg text-sm">All Zones</button>
+                                </div>
+                            </div>
+                            <div class="warehouse-map h-96 relative" id="warehouseMap">
+                                </div>
+                        </div>
+
+                        <div class="bg-white rounded-xl shadow overflow-hidden">
+                            <div class="p-4 border-b border-gray-200">
+                                <h3 class="font-semibold text-gray-800">Active Robots</h3>
+                            </div>
+                            <div class="overflow-y-auto" style="max-height: 480px;" id="robotList">
+                                <div class="divide-y divide-gray-200">
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 bg-white rounded-xl shadow overflow-hidden">
+                        <div class="p-4 border-b border-gray-200 flex justify-between items-center">
+                            <h3 class="font-semibold text-gray-800">Task Queue</h3>
+                            <div class="flex space-x-2">
+                                <button class="px-3 py-1 bg-gray-100 rounded-lg text-sm">All</button>
+                                <button class="px-3 py-1 bg-blue-100 text-blue-600 rounded-lg text-sm">Pending</button>
+                                <button class="px-3 py-1 bg-gray-100 rounded-lg text-sm">Completed</button>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto" id="taskQueue">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Task ID</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assigned Robot</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Priority</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Progress</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="page" id="tasks">
+                    <h2>Task Management Page Content</h2>
+                    <p>This is where task management features will be implemented.</p>
+                </section>
+
+                <section class="page" id="analytics">
+                    <h2>Performance Analytics Page Content</h2>
+                    <p>This is where performance analytics features will be implemented.</p>
+                </section>
+
+                <section class="page" id="settings">
+                    <h2>Settings Page Content</h2>
+                    <p>This is where settings features will be implemented.</p>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/dashboard.js"></script> <script src="js/tasks.js"></script>    <script src="js/analytics.js"></script>  <script src="js/settings.js"></script>   <script src="data/warehouse_data.js"></script> </body>
+</html>

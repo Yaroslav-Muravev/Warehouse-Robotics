@@ -1,0 +1,116 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="cupboard">
+    <static>true</static>
+
+    <link name="cupboard_link">
+
+      <!-- Inertial (minimal since static) -->
+      <inertial>
+        <mass>1.0</mass>
+        <inertia>
+          <ixx>0.1</ixx>
+          <iyy>0.1</iyy>
+          <izz>0.1</izz>
+        </inertia>
+      </inertial>
+
+      <!-- FRAME: four vertical posts -->
+      <!-- New width: 3×0.535 + 2×0.05 gap = 1.705 m total → half-width = 0.8525 -->
+      <!-- Corner posts at x = ±0.8525, y = ±0.15, height = 1.0 (z=0.5) -->
+
+      <!-- Front-left post -->
+      <visual name="post_fl_vis">
+        <pose>-0.8525  0.15 0.5  0 0 0</pose>
+        <geometry><box><size>0.05 0.05 1.0</size></box></geometry>
+        <material><ambient>0.2 0.2 0.2 1</ambient><diffuse>0.2 0.2 0.2 1</diffuse></material>
+      </visual>
+      <collision name="post_fl_col">
+        <pose>-0.8525  0.15 0.5  0 0 0</pose>
+        <geometry><box><size>0.05 0.05 1.0</size></box></geometry>
+      </collision>
+
+      <!-- Front-right post -->
+      <visual name="post_fr_vis">
+        <pose> 0.8525  0.15 0.5  0 0 0</pose>
+        <geometry><box><size>0.05 0.05 1.0</size></box></geometry>
+        <material><ambient>0.2 0.2 0.2 1</ambient><diffuse>0.2 0.2 0.2 1</diffuse></material>
+      </visual>
+      <collision name="post_fr_col">
+        <pose> 0.8525  0.15 0.5  0 0 0</pose>
+        <geometry><box><size>0.05 0.05 1.0</size></box></geometry>
+      </collision>
+
+      <!-- Back-left post -->
+      <visual name="post_bl_vis">
+        <pose>-0.8525 -0.15 0.5  0 0 0</pose>
+        <geometry><box><size>0.05 0.05 1.0</size></box></geometry>
+        <material><ambient>0.2 0.2 0.2 1</ambient><diffuse>0.2 0.2 0.2 1</diffuse></material>
+      </visual>
+      <collision name="post_bl_col">
+        <pose>-0.8525 -0.15 0.5  0 0 0</pose>
+        <geometry><box><size>0.05 0.05 1.0</size></box></geometry>
+      </collision>
+
+      <!-- Back-right post -->
+      <visual name="post_br_vis">
+        <pose> 0.8525 -0.15 0.5  0 0 0</pose>
+        <geometry><box><size>0.05 0.05 1.0</size></box></geometry>
+        <material><ambient>0.2 0.2 0.2 1</ambient><diffuse>0.2 0.2 0.2 1</diffuse></material>
+      </visual>
+      <collision name="post_br_col">
+        <pose> 0.8525 -0.15 0.5  0 0 0</pose>
+        <geometry><box><size>0.05 0.05 1.0</size></box></geometry>
+      </collision>
+
+      <!-- Front horizontal rail at mid-height -->
+      <visual name="rail_front_vis">
+        <pose>0 0.15 0.5 0 0 0</pose>
+        <geometry><box><size>1.705 0.05 0.05</size></box></geometry>
+        <material><ambient>0.2 0.2 0.2 1</ambient><diffuse>0.2 0.2 0.2 1</diffuse></material>
+      </visual>
+      <collision name="rail_front_col">
+        <pose>0 0.15 0.5 0 0 0</pose>
+        <geometry><box><size>1.705 0.05 0.05</size></box></geometry>
+      </collision>
+
+      <!-- Three orange boxes, size 0.535×1.100×0.230 (W×D×H), gap 0.05m -->
+      <!-- X positions: −(0.535+0.05)=−0.585, 0, +0.585; Z=0.115 (half height) -->
+
+      <!-- Left box -->
+      <visual name="box_left_vis">
+        <pose>-0.585  0.00 0.115  0 0 0</pose>
+        <geometry><box><size>0.535 1.100 0.230</size></box></geometry>
+        <material><ambient>1 0.5 0 1</ambient><diffuse>1 0.5 0 1</diffuse></material>
+      </visual>
+      <collision name="box_left_col">
+        <pose>-0.585  0.00 0.115  0 0 0</pose>
+        <geometry><box><size>0.535 1.100 0.230</size></box></geometry>
+      </collision>
+
+      <!-- Center box -->
+      <visual name="box_center_vis">
+        <pose> 0.000  0.00 0.115  0 0 0</pose>
+        <geometry><box><size>0.535 1.100 0.230</size></box></geometry>
+        <material><ambient>1 0.5 0 1</ambient><diffuse>1 0.5 0 1</diffuse></material>
+      </visual>
+      <collision name="box_center_col">
+        <pose> 0.000  0.00 0.115  0 0 0</pose>
+        <geometry><box><size>0.535 1.100 0.230</size></box></geometry>
+      </collision>
+
+      <!-- Right box -->
+      <visual name="box_right_vis">
+        <pose> 0.585  0.00 0.115  0 0 0</pose>
+        <geometry><box><size>0.535 1.100 0.230</size></box></geometry>
+        <material><ambient>1 0.5 0 1</ambient><diffuse>1 0.5 0 1</diffuse></material>
+      </visual>
+      <collision name="box_right_col">
+        <pose> 0.585  0.00 0.115  0 0 0</pose>
+        <geometry><box><size>0.535 1.100 0.230</size></box></geometry>
+      </collision>
+
+    </link>
+  </model>
+</sdf>
+

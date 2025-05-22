@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <world name="warehouse">
+
+    <!-- STEP 1: Ground Plane -->
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="ground_link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.7 0.7 0.7 1</ambient>
+            <diffuse>0.7 0.7 0.7 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- STEP 2: Sun Light -->
+    <light name="sun" type="directional">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>1 1 1 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <direction>-0.5 0.5 -1</direction>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+    </light>
+
+    <!-- STEP 3: Cupboard rows with unique names -->
+    <!-- Row 1 at y = +2.0 -->
+    <include>
+      <name>cupboard_1</name>
+      <uri>model://cupboard/</uri>
+      <pose>-2.0  2.0 0.0  0 0 0</pose>
+    </include>
+    <include>
+      <name>cupboard_2</name>
+      <uri>model://cupboard/</uri>
+      <pose> 0.0  2.0 0.0  0 0 0</pose>
+    </include>
+    <include>
+      <name>cupboard_3</name>
+      <uri>model://cupboard/</uri>
+      <pose> 3.0  2.0 0.0  0 0 0</pose>
+    </include>
+    <include>
+      <name>cupboard_4</name>
+      <uri>model://cupboard</uri>
+      <pose> 5.0 2.0 0.0  0 0 0</pose>
+    </include>
+
+    <!-- Row 2 at y = -2.0 -->
+    <include>
+      <name>cupboard_5</name>
+      <uri>model://cupboard/</uri>
+      <pose>-2.0 -2.0 0.0  0 0 0</pose>
+    </include>
+    <include>
+      <name>cupboard_6</name>
+      <uri>model://cupboard/</uri>
+      <pose> 0.0 -2.0 0.0  0 0 0</pose>
+    </include>
+    <include>
+      <name>cupboard_7</name>
+      <uri>model://cupboard/</uri>
+      <pose> 3.0 -2.0 0.0  0 0 0</pose>
+    </include>
+    <include>
+      <name>cupboard_8</name>
+      <uri>model://cupboard/</uri>
+      <pose> 5.0 -2.0 0.0  0 0 0</pose>
+    </include>
+
+    <!-- STEP 4: Central intersection tile -->
+    <include>
+      <uri>model://intersection</uri>
+      <name>intersection_center_1</name>
+      <pose>1.5 2.0 0.001  0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://intersection</uri>
+      <name>intersection_center_2</name>
+      <pose>1.5 -2.0 0.001  0 0 0</pose>
+    </include>
+    
+    <!-- STEP 5: Add robot -->
+    <include>
+      <uri>model://robot</uri>
+      <name>vacuum_robot</name>
+      <pose>0 0 0.1 0 0 0</pose>
+    </include>
+
+  </world>
+</sdf>
